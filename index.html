@@ -1,167 +1,205 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es-AR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>PuntoX Labs | Proyectos de innovación</title>
-<meta name="description" content="PuntoX Labs desarrolla proyectos digitales simples y escalables como PuntoAuto. Innovación práctica enfocada en productos reales.">
-
-<!-- SEO -->
-<link rel="canonical" href="https://tudominio.com">
-
-<!-- Open Graph -->
-<meta property="og:title" content="PuntoX Labs">
-<meta property="og:description" content="Proyectos digitales simples y escalables">
-<meta property="og:type" content="website">
-
-<style>
-:root {
-  --bg:#0f1115;
-  --text:#ffffff;
-  --accent:#4f8cff;
-  --muted:#a0a6b0;
-}
-
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: system-ui, sans-serif;
-}
-
-body {
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.6;
-}
-
-.container {
-  max-width:1100px;
-  margin:auto;
-  padding:40px 20px;
-}
-
-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.logo {
-  font-weight:700;
-  font-size:20px;
-}
-
-.hero {
-  margin-top:80px;
-}
-
-.hero h1 {
-  font-size:42px;
-  margin-bottom:20px;
-}
-
-.hero p {
-  color:var(--muted);
-  max-width:600px;
-}
-
-.section {
-  margin-top:100px;
-}
-
-.cards {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
-  margin-top:30px;
-}
-
-.card {
-  background:#1a1d24;
-  padding:20px;
-  border-radius:12px;
-  transition:0.3s;
-}
-
-.card:hover {
-  transform:translateY(-4px);
-}
-
-.card h3 {
-  margin-bottom:10px;
-}
-
-.card p {
-  color:var(--muted);
-}
-
-.footer {
-  margin-top:120px;
-  padding:40px 0;
-  border-top:1px solid #222;
-  text-align:center;
-  color:var(--muted);
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PuntoX Labs | Laboratorio de productos digitales</title>
+  <meta name="description" content="PuntoX Labs es una marca de proyectos digitales simples, útiles y escalables. Creamos soluciones enfocadas en problemas concretos, empezando por PuntoAuto." />
+  <meta name="theme-color" content="#0b1020" />
+  <meta property="og:title" content="PuntoX Labs | Laboratorio de productos digitales" />
+  <meta property="og:description" content="Proyectos digitales simples, útiles y escalables. Una marca paraguas para productos reales." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-puntox.svg" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PuntoX Labs",
+    "description": "Laboratorio de productos digitales simples, útiles y escalables.",
+    "url": "https://puntoxlabs.github.io/Sitio-web/"
+  }
+  </script>
 </head>
-
 <body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
 
-<div class="container">
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Principal">
+      <a class="brand" href="#inicio" aria-label="PuntoX Labs inicio">
+        <span class="brand-mark">PX</span>
+        <span class="brand-text">PuntoX Labs</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+      <div class="nav-links" id="menu">
+        <a href="#marca">Marca</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#metodo">Método</a>
+        <a class="nav-cta" href="#contacto">Contacto</a>
+      </div>
+    </nav>
+  </header>
 
-<header>
-  <div class="logo">PuntoX Labs</div>
-</header>
+  <main id="contenido">
+    <section class="hero shell" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow">Laboratorio de productos digitales</p>
+        <h1>Una marca simple para proyectos que resuelven problemas reales.</h1>
+        <p class="lead">
+          PuntoX Labs diseña, valida y publica soluciones digitales con una premisa clara:
+          menos complejidad, más utilidad y una base preparada para crecer.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#proyectos">Ver proyectos</a>
+          <a class="button secondary" href="#marca">Conocer la marca</a>
+        </div>
+      </div>
 
-<section class="hero">
-  <h1>Proyectos simples que resuelven cosas reales</h1>
-  <p>
-    PuntoX Labs es una marca enfocada en crear productos digitales prácticos,
-    escalables y centrados en uso real.
-  </p>
-</section>
+      <div class="hero-panel" aria-label="Resumen visual de PuntoX Labs">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="panel-card main-card">
+          <span class="status">En evolución</span>
+          <h2>PuntoX Labs</h2>
+          <p>Marca paraguas para productos digitales propios.</p>
+        </div>
+        <div class="mini-grid">
+          <div><strong>01</strong><span>Idea</span></div>
+          <div><strong>02</strong><span>MVP</span></div>
+          <div><strong>03</strong><span>Producto</span></div>
+        </div>
+      </div>
+    </section>
 
-<section class="section">
-  <h2>Qué es PuntoX Labs</h2>
-  <p style="margin-top:10px; color:var(--muted); max-width:600px;">
-    Un espacio para diseñar, validar y lanzar ideas digitales sin complejidad innecesaria.
-    Cada proyecto es independiente, pero comparte una misma lógica: simple, útil y escalable.
-  </p>
-</section>
+    <section class="section shell split" id="marca">
+      <div>
+        <p class="eyebrow">Qué es</p>
+        <h2>PuntoX Labs como marca paraguas</h2>
+      </div>
+      <div class="text-block">
+        <p>
+          PuntoX Labs funciona como una base institucional para ordenar distintos proyectos
+          digitales. No busca parecer una gran corporación, sino transmitir criterio,
+          simpleza, continuidad y capacidad de ejecución.
+        </p>
+        <p>
+          Cada producto puede crecer con identidad propia, pero conectado a una marca madre
+          que le da respaldo, coherencia y proyección.
+        </p>
+      </div>
+    </section>
 
-<section class="section">
-  <h2>Proyectos</h2>
+    <section class="section shell">
+      <div class="section-head">
+        <p class="eyebrow">Enfoque</p>
+        <h2>Diseño sobrio, desarrollo práctico y crecimiento por etapas.</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="icon">✦</span>
+          <h3>Simple antes que complejo</h3>
+          <p>La primera versión debe entenderse rápido, cargar rápido y poder mantenerse sin fricción.</p>
+        </article>
+        <article class="feature-card">
+          <span class="icon">◈</span>
+          <h3>Productos reales</h3>
+          <p>La marca se construye desde proyectos concretos, no desde promesas abstractas.</p>
+        </article>
+        <article class="feature-card">
+          <span class="icon">◎</span>
+          <h3>Escalable por bloques</h3>
+          <p>La estructura permite sumar nuevas fichas de proyectos sin rediseñar todo el sitio.</p>
+        </article>
+      </div>
+    </section>
 
-  <div class="cards">
+    <section class="section shell" id="proyectos">
+      <div class="section-head row">
+        <div>
+          <p class="eyebrow">Portfolio vivo</p>
+          <h2>Proyectos</h2>
+        </div>
+        <p class="section-note">Primera vitrina de productos bajo la marca PuntoX Labs.</p>
+      </div>
 
-    <div class="card">
-      <h3>PuntoAuto</h3>
-      <p>Guardar y encontrar tu vehículo fácilmente.</p>
-    </div>
+      <div class="project-card featured">
+        <div class="project-copy">
+          <span class="tag">Proyecto principal</span>
+          <h3>PuntoAuto</h3>
+          <p>
+            App pensada para guardar la ubicación del vehículo y ayudar a encontrarlo después
+            de forma simple. Un producto pequeño, concreto y con potencial de evolución.
+          </p>
+          <ul class="clean-list">
+            <li>Ubicación guardada del vehículo</li>
+            <li>Experiencia mobile-first</li>
+            <li>Base para funciones premium y futuras mejoras</li>
+          </ul>
+          <a class="button primary" href="#contacto">Consultar disponibilidad</a>
+        </div>
+        <div class="phone-mockup" aria-label="Representación visual de PuntoAuto">
+          <div class="phone-top"></div>
+          <div class="map-card">
+            <span class="pin"></span>
+            <strong>Vehículo guardado</strong>
+            <small>Ubicación reciente</small>
+          </div>
+          <div class="phone-actions">
+            <span></span><span></span>
+          </div>
+        </div>
+      </div>
 
-    <div class="card">
-      <h3>Próximo proyecto</h3>
-      <p>En desarrollo.</p>
-    </div>
+      <div class="project-grid">
+        <article class="project-tile">
+          <span class="tag muted">Próximamente</span>
+          <h3>Automatizaciones</h3>
+          <p>Ideas y herramientas para simplificar tareas digitales repetitivas.</p>
+        </article>
+        <article class="project-tile">
+          <span class="tag muted">Exploración</span>
+          <h3>IA aplicada</h3>
+          <p>Prototipos basados en inteligencia artificial con foco práctico.</p>
+        </article>
+      </div>
+    </section>
 
-  </div>
+    <section class="section shell" id="metodo">
+      <div class="section-head">
+        <p class="eyebrow">Método</p>
+        <h2>Un flujo pensado para no sobredimensionar.</h2>
+      </div>
+      <div class="timeline">
+        <div class="step"><span>1</span><h3>Detectar</h3><p>Problema concreto, público posible y uso real.</p></div>
+        <div class="step"><span>2</span><h3>Prototipar</h3><p>Primera versión simple, clara y validable.</p></div>
+        <div class="step"><span>3</span><h3>Publicar</h3><p>Lanzamiento controlado, aprendizaje y ajustes.</p></div>
+        <div class="step"><span>4</span><h3>Escalar</h3><p>Mejoras graduales según señales reales.</p></div>
+      </div>
+    </section>
 
-</section>
+    <section class="section shell contact" id="contacto">
+      <div>
+        <p class="eyebrow">Contacto</p>
+        <h2>Un punto de entrada claro para la marca.</h2>
+        <p>
+          Este sitio puede funcionar como presencia institucional inicial, soporte de marca
+          y base para sumar nuevos productos.
+        </p>
+      </div>
+      <div class="contact-card">
+        <span>Correo sugerido</span>
+        <a href="mailto:support@puntoxlabs.com">support@puntoxlabs.com</a>
+        <small>Reemplazable por el email definitivo de la marca.</small>
+      </div>
+    </section>
+  </main>
 
-<section class="section">
-  <h2>Contacto</h2>
-  <p style="margin-top:10px; color:var(--muted);">
-    contacto@tudominio.com
-  </p>
-</section>
+  <footer class="footer shell">
+    <p>© 2026 PuntoX Labs. Proyectos digitales simples, útiles y escalables.</p>
+    <a href="#inicio">Volver arriba</a>
+  </footer>
 
-<div class="footer">
-  © 2026 PuntoX Labs
-</div>
-
-</div>
-
+  <script src="assets/site.js"></script>
 </body>
 </html>
