@@ -1,205 +1,756 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es-AR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PuntoX Labs | Laboratorio de productos digitales</title>
-  <meta name="description" content="PuntoX Labs es una marca de proyectos digitales simples, útiles y escalables. Creamos soluciones enfocadas en problemas concretos, empezando por PuntoAuto." />
-  <meta name="theme-color" content="#0b1020" />
-  <meta property="og:title" content="PuntoX Labs | Laboratorio de productos digitales" />
-  <meta property="og:description" content="Proyectos digitales simples, útiles y escalables. Una marca paraguas para productos reales." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/og-puntox.svg" />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/styles.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "PuntoX Labs",
-    "description": "Laboratorio de productos digitales simples, útiles y escalables.",
-    "url": "https://puntoxlabs.github.io/Sitio-web/"
-  }
-  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PuntoX Labs | Apps simples para resolver problemas reales</title>
+  <meta name="description" content="PuntoX Labs crea aplicaciones simples, útiles y pensadas para la vida cotidiana. Conocé PuntoAuto, la app para guardar dónde estacionaste y volver fácilmente." />
+  <meta name="theme-color" content="#0B1220" />
+
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0d1b2e;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-strong: rgba(255, 255, 255, 0.13);
+      --text: #f5f7fb;
+      --muted: #aeb9ca;
+      --line: rgba(255, 255, 255, 0.14);
+      --primary: #36d399;
+      --primary-2: #38bdf8;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      --radius-xl: 28px;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.22), transparent 32%),
+        radial-gradient(circle at 85% 18%, rgba(54, 211, 153, 0.18), transparent 32%),
+        radial-gradient(circle at 50% 90%, rgba(250, 204, 21, 0.08), transparent 28%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .page-shell { min-height: 100vh; position: relative; }
+
+    .page-shell::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent 72%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header, main, footer { position: relative; z-index: 1; }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 17, 31, 0.74);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark, .app-logo {
+      background: linear-gradient(135deg, var(--primary-2), var(--primary));
+      display: grid;
+      place-items: center;
+      color: #06121f;
+      font-weight: 950;
+      overflow: hidden;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      box-shadow: 0 12px 34px rgba(56, 189, 248, 0.25);
+    }
+
+    .brand-mark img, .app-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 650;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: transform .2s ease, background .2s ease, border .2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #06121f;
+      box-shadow: 0 16px 40px rgba(54, 211, 153, 0.25);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .hero {
+      position: relative;
+      padding: 96px 0 78px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(7, 17, 31, 0.98) 0%, rgba(7, 17, 31, 0.9) 38%, rgba(7, 17, 31, 0.35) 100%),
+        linear-gradient(180deg, rgba(7, 17, 31, 0.35), rgba(7, 17, 31, 0.92)),
+        url("Mapa.jpeg") center right / cover no-repeat;
+      opacity: 0.95;
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 180px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.03fr) minmax(300px, .97fr);
+      gap: 54px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.07);
+      color: #d8eefc;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 750;
+      margin-bottom: 22px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 99px;
+      background: var(--primary);
+      box-shadow: 0 0 0 6px rgba(54, 211, 153, .14);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.7rem, 6vw, 5.7rem);
+      line-height: .92;
+      letter-spacing: -0.07em;
+      max-width: 900px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff, #b9e9ff 38%, #8ff0c7 74%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: clamp(1.08rem, 2vw, 1.28rem);
+      line-height: 1.7;
+      margin: 24px 0 30px;
+      max-width: 660px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      padding: 9px 12px;
+    }
+
+    .hero-showcase {
+      position: relative;
+      min-height: 560px;
+      border-radius: 44px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      background:
+        linear-gradient(180deg, rgba(4, 9, 20, 0.04), rgba(4, 9, 20, 0.62)),
+        url("Mapa.jpeg") center / cover no-repeat;
+      box-shadow: var(--shadow);
+      transform: perspective(1100px) rotateY(-5deg) rotateX(2deg);
+    }
+
+    .hero-showcase::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 34% 32%, rgba(255,255,255,.28), transparent 20%),
+        linear-gradient(135deg, rgba(56, 189, 248, .10), rgba(54, 211, 153, .12));
+      pointer-events: none;
+    }
+
+    .hero-showcase-content {
+      position: absolute;
+      inset: auto 22px 22px 22px;
+      padding: 22px;
+      border-radius: 28px;
+      background: rgba(4, 9, 20, .58);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-showcase-content strong {
+      display: block;
+      font-size: 1.35rem;
+      line-height: 1.1;
+      letter-spacing: -.04em;
+      margin-bottom: 8px;
+    }
+
+    .hero-showcase-content span {
+      color: #cbd8ea;
+      line-height: 1.5;
+      display: block;
+    }
+
+    .floating-phone {
+      position: absolute;
+      right: 24px;
+      bottom: 132px;
+      width: min(230px, 42%);
+      aspect-ratio: 9 / 18.3;
+      border-radius: 32px;
+      overflow: hidden;
+      border: 8px solid #060a12;
+      box-shadow: 0 26px 70px rgba(0,0,0,.42);
+      background: #060a12;
+    }
+
+    .floating-phone img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    section { padding: 76px 0; }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .kicker {
+      color: var(--primary);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .78rem;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.8rem);
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin: 18px 0 0;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card, .project-card, .about-card, .cta-box {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 18px 70px rgba(0,0,0,.18);
+    }
+
+    .feature-card { padding: 26px; }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.1);
+      border: 1px solid var(--line);
+      font-size: 1.35rem;
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3, .project-info h3, .about-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.28rem;
+      letter-spacing: -.03em;
+    }
+
+    .feature-card p, .project-info p, .about-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 28px;
+      padding: 28px;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .project-visual {
+      border-radius: 28px;
+      min-height: 420px;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(54,211,153,.26), transparent 36%),
+        radial-gradient(circle at 70% 74%, rgba(56,189,248,.24), transparent 36%),
+        rgba(255,255,255,.06);
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      padding: 30px;
+    }
+
+    .project-visual img {
+      width: min(260px, 80%);
+      border-radius: 34px;
+      box-shadow: 0 28px 70px rgba(0,0,0,.28);
+    }
+
+    .project-info { padding: 14px; }
+
+    .app-badge-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 20px 0 26px;
+    }
+
+    .mini-badge {
+      color: #dce7f5;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-size: .9rem;
+      font-weight: 750;
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .shot {
+      border-radius: 26px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--line);
+      padding: 10px;
+      min-height: 330px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .image-fallback, .shot-placeholder {
+      color: var(--muted);
+      text-align: center;
+      padding: 20px;
+      line-height: 1.5;
+      font-weight: 800;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .about-card { padding: 30px; }
+
+    .cta-box {
+      padding: clamp(30px, 6vw, 58px);
+      text-align: center;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(54,211,153,.2), transparent 35%),
+        radial-gradient(circle at 80% 40%, rgba(56,189,248,.22), transparent 35%),
+        var(--card-strong);
+    }
+
+    .cta-box h2 {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .cta-box p {
+      color: var(--muted);
+      max-width: 680px;
+      margin: 18px auto 26px;
+      line-height: 1.7;
+      font-size: 1.12rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: .95rem;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero-grid, .project-card, .about-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 54px; }
+      .phone-stage { min-height: 500px; }
+      .features, .screenshots-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(100% - 26px, var(--max)); }
+      .hero-actions, .btn { width: 100%; }
+      .features, .screenshots-grid { grid-template-columns: 1fr; }
+      .shot { min-height: 420px; }
+      .project-card, .feature-card, .about-card { border-radius: 22px; }
+    }
+  </style>
 </head>
+
 <body>
-  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <div class="page-shell">
+    <header class="nav">
+      <div class="container nav-inner">
+        <a href="#inicio" class="brand" aria-label="Ir al inicio">
+          <span class="brand-mark" data-brand-logo-container>
+            <img data-optional-image src="Puntoxlabsicono.jpeg" alt="PuntoX Labs" data-fallback-text="PX" />
+          </span>
+          <span>
+            PuntoX Labs
+            <small>Apps simples. Impacto real.</small>
+          </span>
+        </a>
 
-  <header class="site-header">
-    <nav class="nav shell" aria-label="Principal">
-      <a class="brand" href="#inicio" aria-label="PuntoX Labs inicio">
-        <span class="brand-mark">PX</span>
-        <span class="brand-text">PuntoX Labs</span>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
-      <div class="nav-links" id="menu">
-        <a href="#marca">Marca</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#metodo">Método</a>
-        <a class="nav-cta" href="#contacto">Contacto</a>
-      </div>
-    </nav>
-  </header>
+        <nav class="nav-links" aria-label="Navegación principal">
+          <a href="#puntoauto">PuntoAuto</a>
+          <a href="#funciona">Cómo funciona</a>
+          <a href="#capturas">Capturas</a>
+          <a href="#marca">Marca</a>
+        </nav>
 
-  <main id="contenido">
-    <section class="hero shell" id="inicio">
-      <div class="hero-copy">
-        <p class="eyebrow">Laboratorio de productos digitales</p>
-        <h1>Una marca simple para proyectos que resuelven problemas reales.</h1>
-        <p class="lead">
-          PuntoX Labs diseña, valida y publica soluciones digitales con una premisa clara:
-          menos complejidad, más utilidad y una base preparada para crecer.
-        </p>
-        <div class="hero-actions">
-          <a class="button primary" href="#proyectos">Ver proyectos</a>
-          <a class="button secondary" href="#marca">Conocer la marca</a>
-        </div>
+        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.puntocar.app" target="_blank" rel="noopener noreferrer">Descargar gratis</a>
       </div>
+    </header>
 
-      <div class="hero-panel" aria-label="Resumen visual de PuntoX Labs">
-        <div class="orb orb-one"></div>
-        <div class="orb orb-two"></div>
-        <div class="panel-card main-card">
-          <span class="status">En evolución</span>
-          <h2>PuntoX Labs</h2>
-          <p>Marca paraguas para productos digitales propios.</p>
-        </div>
-        <div class="mini-grid">
-          <div><strong>01</strong><span>Idea</span></div>
-          <div><strong>02</strong><span>MVP</span></div>
-          <div><strong>03</strong><span>Producto</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section shell split" id="marca">
-      <div>
-        <p class="eyebrow">Qué es</p>
-        <h2>PuntoX Labs como marca paraguas</h2>
-      </div>
-      <div class="text-block">
-        <p>
-          PuntoX Labs funciona como una base institucional para ordenar distintos proyectos
-          digitales. No busca parecer una gran corporación, sino transmitir criterio,
-          simpleza, continuidad y capacidad de ejecución.
-        </p>
-        <p>
-          Cada producto puede crecer con identidad propia, pero conectado a una marca madre
-          que le da respaldo, coherencia y proyección.
-        </p>
-      </div>
-    </section>
-
-    <section class="section shell">
-      <div class="section-head">
-        <p class="eyebrow">Enfoque</p>
-        <h2>Diseño sobrio, desarrollo práctico y crecimiento por etapas.</h2>
-      </div>
-      <div class="feature-grid">
-        <article class="feature-card">
-          <span class="icon">✦</span>
-          <h3>Simple antes que complejo</h3>
-          <p>La primera versión debe entenderse rápido, cargar rápido y poder mantenerse sin fricción.</p>
-        </article>
-        <article class="feature-card">
-          <span class="icon">◈</span>
-          <h3>Productos reales</h3>
-          <p>La marca se construye desde proyectos concretos, no desde promesas abstractas.</p>
-        </article>
-        <article class="feature-card">
-          <span class="icon">◎</span>
-          <h3>Escalable por bloques</h3>
-          <p>La estructura permite sumar nuevas fichas de proyectos sin rediseñar todo el sitio.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section shell" id="proyectos">
-      <div class="section-head row">
-        <div>
-          <p class="eyebrow">Portfolio vivo</p>
-          <h2>Proyectos</h2>
-        </div>
-        <p class="section-note">Primera vitrina de productos bajo la marca PuntoX Labs.</p>
-      </div>
-
-      <div class="project-card featured">
-        <div class="project-copy">
-          <span class="tag">Proyecto principal</span>
-          <h3>PuntoAuto</h3>
-          <p>
-            App pensada para guardar la ubicación del vehículo y ayudar a encontrarlo después
-            de forma simple. Un producto pequeño, concreto y con potencial de evolución.
-          </p>
-          <ul class="clean-list">
-            <li>Ubicación guardada del vehículo</li>
-            <li>Experiencia mobile-first</li>
-            <li>Base para funciones premium y futuras mejoras</li>
-          </ul>
-          <a class="button primary" href="#contacto">Consultar disponibilidad</a>
-        </div>
-        <div class="phone-mockup" aria-label="Representación visual de PuntoAuto">
-          <div class="phone-top"></div>
-          <div class="map-card">
-            <span class="pin"></span>
-            <strong>Vehículo guardado</strong>
-            <small>Ubicación reciente</small>
+    <main id="inicio">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow"><span class="dot"></span> PuntoAuto ya disponible en Google Play</div>
+            <h1><span class="gradient-text">Nunca más olvides dónde estacionaste</span> sin vueltas.</h1>
+            <p class="lead">Guardá tu ubicación en un toque y encontrá tu auto en segundos. Sin registros, sin complicaciones.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.puntocar.app" target="_blank" rel="noopener noreferrer">Descargar gratis</a>
+              <a class="btn btn-secondary" href="#puntoauto">Ver cómo funciona</a>
+            </div>
+            <div class="trust-row" aria-label="Características principales">
+              <span class="pill">Gratis · Sin registro · Instantáneo</span>
+              <span class="pill">📍 Guarda ubicación GPS</span>
+              <span class="pill">🗺️ Abre ruta en mapas</span>
+              <span class="pill">🌎 Español, inglés y portugués</span>
+            </div>
           </div>
-          <div class="phone-actions">
-            <span></span><span></span>
+
+          <div class="hero-showcase" aria-label="PuntoAuto sobre mapa con ubicación guardada">
+            <div class="floating-phone">
+              <img data-optional-image src="PrincipalWeb.png" alt="Pantalla principal PuntoAuto" />
+            </div>
+            <div class="hero-showcase-content">
+              <strong>Guardá tu ubicación en segundos.</strong>
+              <span>Después abrila en el mapa y reconocé fácilmente el lugar donde estacionaste.</span>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="project-grid">
-        <article class="project-tile">
-          <span class="tag muted">Próximamente</span>
-          <h3>Automatizaciones</h3>
-          <p>Ideas y herramientas para simplificar tareas digitales repetitivas.</p>
-        </article>
-        <article class="project-tile">
-          <span class="tag muted">Exploración</span>
-          <h3>IA aplicada</h3>
-          <p>Prototipos basados en inteligencia artificial con foco práctico.</p>
-        </article>
-      </div>
-    </section>
+      <section id="funciona">
+        <div class="container">
+          <div class="section-head">
+            <div class="kicker">Simple por diseño</div>
+            <h2>Usala en el momento: guardás dónde estacionaste y listo.</h2>
+            <p class="section-copy">El foco está en resolver una situación concreta: estacionaste, guardás la ubicación y después volvés con ayuda del mapa.</p>
+          </div>
 
-    <section class="section shell" id="metodo">
-      <div class="section-head">
-        <p class="eyebrow">Método</p>
-        <h2>Un flujo pensado para no sobredimensionar.</h2>
-      </div>
-      <div class="timeline">
-        <div class="step"><span>1</span><h3>Detectar</h3><p>Problema concreto, público posible y uso real.</p></div>
-        <div class="step"><span>2</span><h3>Prototipar</h3><p>Primera versión simple, clara y validable.</p></div>
-        <div class="step"><span>3</span><h3>Publicar</h3><p>Lanzamiento controlado, aprendizaje y ajustes.</p></div>
-        <div class="step"><span>4</span><h3>Escalar</h3><p>Mejoras graduales según señales reales.</p></div>
-      </div>
-    </section>
+          <div class="features">
+            <article class="feature-card"><div class="icon">📍</div><h3>Guardá el punto</h3><p>Registrá dónde dejaste el auto en segundos, con señales claras de precisión.</p></article>
+            <article class="feature-card"><div class="icon">🧭</div><h3>Volvé fácil</h3><p>Abrí la ubicación en el mapa y verás el lugar donde estacionaste.</p></article>
+            <article class="feature-card"><div class="icon">⚡</div><h3>Sin complicaciones</h3><p>Interfaz clara, directa y preparada para uso cotidiano.</p></article>
+          </div>
+        </div>
+      </section>
 
-    <section class="section shell contact" id="contacto">
-      <div>
-        <p class="eyebrow">Contacto</p>
-        <h2>Un punto de entrada claro para la marca.</h2>
-        <p>
-          Este sitio puede funcionar como presencia institucional inicial, soporte de marca
-          y base para sumar nuevos productos.
-        </p>
-      </div>
-      <div class="contact-card">
-        <span>Correo sugerido</span>
-        <a href="mailto:support@puntoxlabs.com">support@puntoxlabs.com</a>
-        <small>Reemplazable por el email definitivo de la marca.</small>
-      </div>
-    </section>
-  </main>
+      <section id="puntoauto">
+        <div class="container">
+          <article class="project-card">
+            <div class="project-visual" data-fallback-container="Colocar aquí la imagen principal|de PuntoAuto / Play Store">
+              <img data-optional-image src="PrincipalWeb.png" alt="PuntoAuto" />
+              
+            </div>
+            <div class="project-info">
+              <div class="kicker">Primer producto</div>
+              <h2>PuntoAuto</h2>
+              <p>Una solución concreta para una molestia cotidiana: recordar dónde estacionaste. Ideal para centros comerciales, zonas urbanas, eventos, viajes o lugares poco conocidos.</p>
+              <div class="app-badge-row">
+                <span class="mini-badge">Android</span>
+                <span class="mini-badge">Google Play</span>
+                <span class="mini-badge">Uso cotidiano</span>
+                <span class="mini-badge">Diseño simple</span>
+              </div>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.puntocar.app" target="_blank" rel="noopener noreferrer">Descargar PuntoAuto</a>
+                <a class="btn btn-secondary" href="#capturas">Ver capturas</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
 
-  <footer class="footer shell">
-    <p>© 2026 PuntoX Labs. Proyectos digitales simples, útiles y escalables.</p>
-    <a href="#inicio">Volver arriba</a>
-  </footer>
+      <section id="capturas">
+        <div class="container">
+          <div class="section-head">
+            <div class="kicker">Capturas de la app</div>
+            <h2>Así se ve PuntoAuto.</h2>
+            <p class="section-copy">Pantallas reales de la app para entender rápido cómo funciona: guardar la ubicación, volver al auto y revisar el historial.</p>
+          </div>
 
-  <script src="assets/site.js"></script>
+          <div class="screenshots-grid">
+            <div class="shot" data-fallback-container="Captura 1|pantalla principal"><img data-optional-image src="PrincipalWeb.png" alt="PuntoAuto pantalla principal" /></div>
+            <div class="shot" data-fallback-container="Captura 2|mapa"><img data-optional-image src="Mapa.jpeg" alt="PuntoAuto mapa y ubicación" /></div>
+            <div class="shot" data-fallback-container="Captura 3|widget"><img data-optional-image src="Widget.jpeg" alt="PuntoAuto widget guardar ubicación" /></div>
+            <div class="shot" data-fallback-container="Captura 4|historial"><img data-optional-image src="Historial.jpeg" alt="PuntoAuto historial" /></div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="marca">
+        <div class="container">
+          <div class="section-head">
+            <div class="kicker">PuntoX Labs</div>
+            <h2>Una marca para crear productos digitales simples y escalables.</h2>
+            <p class="section-copy">PuntoX Labs nace como laboratorio de aplicaciones prácticas: productos pequeños, claros y útiles, con potencial de crecer en el tiempo.</p>
+          </div>
+
+          <div class="about-grid">
+            <article class="about-card"><div class="icon">🧩</div><h3>Problemas concretos</h3><p>El objetivo no es hacer tecnología compleja porque sí, sino resolver necesidades simples de manera clara.</p></article>
+            <article class="about-card"><div class="icon">🚀</div><h3>Productos que pueden crecer</h3><p>Cada app puede comenzar chica, validar uso real y sumar funciones según la respuesta de los usuarios.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="cta-box">
+            <h2>Descargá PuntoAuto y encontrá tu auto en segundos.</h2>
+            <p>Funciona en segundos, sin configuraciones ni pasos innecesarios.</p>
+            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.puntocar.app" target="_blank" rel="noopener noreferrer">Descargar gratis</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <span>© 2026 PuntoX Labs. Todos los derechos reservados.</span>
+        <span>Argentina · Apps móviles · Tecnología simple</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      function createFallback(text, compact) {
+        const fallback = document.createElement("div");
+        fallback.className = compact ? "" : "image-fallback";
+        fallback.setAttribute("role", "img");
+        fallback.setAttribute("aria-label", text.replace(/\|/g, " "));
+        fallback.innerHTML = text.split("|").map(part => part.trim()).join("<br>");
+        return fallback;
+      }
+
+      function replaceWithFallback(img) {
+        if (!img || !img.parentNode) return false;
+
+        const parent = img.parentNode;
+        const text = img.dataset.fallbackText || parent.dataset.fallbackContainer || "Imagen no disponible";
+        const compact = Boolean(img.dataset.fallbackText);
+        const fallback = createFallback(text, compact);
+
+        parent.replaceChild(fallback, img);
+        return true;
+      }
+
+      function setupOptionalImages(root) {
+        const scope = root || document;
+        const images = scope.querySelectorAll("img[data-optional-image]");
+
+        images.forEach(function (img) {
+          img.addEventListener("error", function () {
+            replaceWithFallback(img);
+          }, { once: true });
+
+          if (img.complete && img.naturalWidth === 0) {
+            replaceWithFallback(img);
+          }
+        });
+      }
+
+      function runSelfTests() {
+        const requiredSections = ["inicio", "funciona", "puntoauto", "capturas", "marca"];
+        requiredSections.forEach(function (id) {
+          console.assert(document.getElementById(id), "Falta la sección #" + id);
+        });
+
+        console.assert(document.querySelectorAll("img[data-optional-image]").length >= 6, "Deberían existir imágenes opcionales con fallback seguro.");
+
+        const testContainer = document.createElement("div");
+        const testImg = document.createElement("img");
+        testImg.dataset.optionalImage = "";
+        testImg.dataset.fallbackText = "OK";
+        testContainer.appendChild(testImg);
+        const replaced = replaceWithFallback(testImg);
+        console.assert(replaced === true, "El fallback debe reemplazar una imagen con padre válido.");
+        console.assert(testContainer.textContent.trim() === "OK", "El fallback debe conservar el texto esperado.");
+        console.assert(replaceWithFallback(null) === false, "El fallback debe ignorar imágenes nulas sin lanzar errores.");
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        setupOptionalImages(document);
+        runSelfTests();
+      });
+    })();
+  </script>
 </body>
 </html>
