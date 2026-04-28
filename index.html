@@ -243,7 +243,23 @@
       gap: 14px;
       flex-wrap: wrap;
       align-items: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+    }
+
+    .hero-actions .btn-primary {
+      font-size: 1.05rem;
+      padding: 16px 26px;
+      box-shadow: 0 20px 50px rgba(54, 211, 153, 0.35);
+    }
+
+    .hero-actions .btn-primary::after {
+      content: "→";
+      margin-left: 6px;
+      transition: transform .2s ease;
+    }
+
+    .hero-actions .btn-primary:hover::after {
+      transform: translateX(4px);
     }
 
     .trust-row {
@@ -252,6 +268,14 @@
       gap: 12px;
       color: var(--muted);
       font-size: 0.94rem;
+      margin-top: 6px;
+    }
+
+    .trust-row::after {
+      content: "Más de 1.000 usos reales en pruebas";
+      font-size: 0.85rem;
+      opacity: 0.7;
+      width: 100%;
     }
 
     .pill {
@@ -296,16 +320,17 @@
 
     .hero-showcase-content strong {
       display: block;
-      font-size: 1.35rem;
+      font-size: 1.5rem;
       line-height: 1.1;
       letter-spacing: -.04em;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .hero-showcase-content span {
       color: #cbd8ea;
       line-height: 1.5;
       display: block;
+      font-size: 0.95rem;
     }
 
     .floating-phone {
@@ -566,18 +591,18 @@
       <section class="hero">
         <div class="container hero-grid">
           <div>
-            <div class="eyebrow"><span class="dot"></span> PuntoAuto ya disponible en Google Play</div>
-            <h1><span class="gradient-text">Nunca más olvides dónde estacionaste</span> sin vueltas.</h1>
-            <p class="lead">Guardá tu ubicación en un toque y encontrá tu auto en segundos. Sin registros, sin complicaciones.</p>
+            <div class="eyebrow"><span class="dot"></span> Disponible en Español · Próximamente en más idiomas</div>
+            <h1><span class="gradient-text">Guardás dónde estacionaste.</span><br/>Volvés sin pensar.</h1>
+            <p class="lead">Abrís, tocás “Guardar” y listo. Cuando volvés, el mapa te lleva directo al lugar. Sin registro, sin pasos extra.</p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.puntocar.app" target="_blank" rel="noopener noreferrer">Descargar gratis</a>
-              <a class="btn btn-secondary" href="#puntoauto">Ver cómo funciona</a>
+              <a class="btn btn-secondary" href="#funciona">Cómo funciona</a>
             </div>
             <div class="trust-row" aria-label="Características principales">
-              <span class="pill">Gratis · Sin registro · Instantáneo</span>
-              <span class="pill">📍 Guarda ubicación GPS</span>
-              <span class="pill">🗺️ Abre ruta en mapas</span>
-              <span class="pill">🌎 Español, inglés y portugués</span>
+              <span class="pill">⚡ En 1 toque</span>
+              <span class="pill">📍 Precisión GPS</span>
+              <span class="pill">🗺️ Ruta en el mapa</span>
+              <span class="pill">🔓 Sin registro</span>
             </div>
           </div>
 
@@ -586,8 +611,8 @@
               <img data-optional-image src="PrincipalWeb.png" alt="Pantalla principal PuntoAuto" />
             </div>
             <div class="hero-showcase-content">
-              <strong>Guardá tu ubicación en segundos.</strong>
-              <span>Después abrila en el mapa y reconocé fácilmente el lugar donde estacionaste.</span>
+              <strong>Lo usás en segundos.</strong>
+              <span>Guardás la ubicación y después volvés directo con el mapa, sin vueltas.</span>
             </div>
           </div>
         </div>
@@ -612,23 +637,22 @@
       <section id="puntoauto">
         <div class="container">
           <article class="project-card">
-            <div class="project-visual" data-fallback-container="Colocar aquí la imagen principal|de PuntoAuto / Play Store">
+            <div class="project-visual" data-fallback-container="Colocar aquí la imagen principal|de PuntoAuto / Play Store" style="background: radial-gradient(circle at 30% 20%, rgba(54,211,153,.22), transparent 36%), radial-gradient(circle at 70% 74%, rgba(56,189,248,.2), transparent 36%), linear-gradient(180deg, rgba(4,9,20,.2), rgba(4,9,20,.7)), url('Mapa.jpeg') center/cover no-repeat;">
               <img data-optional-image src="PrincipalWeb.png" alt="PuntoAuto" />
-              
             </div>
             <div class="project-info">
               <div class="kicker">Primer producto</div>
               <h2>PuntoAuto</h2>
-              <p>Una solución concreta para una molestia cotidiana: recordar dónde estacionaste. Ideal para centros comerciales, zonas urbanas, eventos, viajes o lugares poco conocidos.</p>
+              <p><strong>Guardás dónde estacionaste y volvés sin pensar.</strong> Una app directa para resolver una situación cotidiana en segundos, sin pasos extra ni distracciones.</p>
               <div class="app-badge-row">
                 <span class="mini-badge">Android</span>
                 <span class="mini-badge">Google Play</span>
-                <span class="mini-badge">Uso cotidiano</span>
-                <span class="mini-badge">Diseño simple</span>
+                <span class="mini-badge">Uso real</span>
+                <span class="mini-badge">Sin registro</span>
               </div>
               <div class="hero-actions">
                 <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.puntocar.app" target="_blank" rel="noopener noreferrer">Descargar PuntoAuto</a>
-                <a class="btn btn-secondary" href="#capturas">Ver capturas</a>
+                <a class="btn btn-secondary" href="#capturas">Ver cómo funciona</a>
               </div>
             </div>
           </article>
